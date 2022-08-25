@@ -1,6 +1,10 @@
 package lectures.week1
 
+import lectures.StringOperations.aString
+import lectures.week1.Recursion.line
+
 import scala.annotation.tailrec
+import scala.compiletime.ops.string.Length
 import scala.jdk.Accumulator
 
 object Recursion extends App {
@@ -96,14 +100,48 @@ object Recursion extends App {
     else x * 2
   }
 
-  val line = "I like     Scala"
+  val line = " I l ike      Sc ala "
 
-  def uTurn(line: String, length: Int): String = {
+  def uTurn(line: String, start: Int, end: Int): Unit = {
+
     @tailrec
-    loop(line: String, length: Int, i: Int): Strin = {
-      if (i = 0)
+    def loop(trimLine: String, length: Int): Unit = {
+      if (length == end - 1) print(trimLine.charAt(length))
+      else {
+        print(trimLine.charAt(length))
+        loop(trimLine, length - 1)
+      }
     }
+
+    loop(line, start)
   }
+
+  //println(line.substring(4, 11))
+  def checkWord(line: String): Unit = {
+    val trimLine = line.trim.replaceAll("\\s+", " ")
+
+    var length = trimLine.length - 1
+
+    @tailrec
+    def loop(trimLine: String, start: Int, end: Int): Unit = {
+      if (end == 0) {
+        print(trimLine.substring(end, start))
+      }
+      else {
+        if (trimLine.charAt(end).toString != " ") {
+          loop(trimLine, start, end - 1)
+        }
+        else {
+          print(trimLine.substring(end + 1, start) + " ")
+          loop(trimLine, end, end - 1)
+        }
+      }
+    }
+
+    loop(trimLine, length + 1, length)
+  }
+
+  println(line.split("\\s+").toList.reverse.mkString("meow"))
 
 
 }
