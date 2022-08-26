@@ -1,5 +1,7 @@
 package lectures.week1
 
+import scala.collection.mutable
+
 object glava4 extends App {
 
   class Checksum {
@@ -47,10 +49,31 @@ object glava4 extends App {
   val s = "hello";
   println(s)
 
-  if (1 < 2)
-    println("too small")
-  else
-    println("ok")
+  if (1 < 2) println("too small")
+  else println("ok")
+
+  // Singleton objects
+
+//  object ChecksumAccumulator {
+//
+//    private val cache = mutable.Map.empty[String, Int]
+//
+//    def calculate(s: String): Int = {
+//      if (cache.contains(s)) cache(s)
+//      else {
+//        val acc = new ChecksumAccumulator
+//        for (c <- s) acc.add(c.toByte)
+//        val cs = acc.checksum()
+//        cache += (s -> cs)
+//        cs
+//      }
+//    }
+//  }
+
+//  ChecksumAccumulator.calculate("Every value is an
+//  object")
+
+  
 
 
 }
